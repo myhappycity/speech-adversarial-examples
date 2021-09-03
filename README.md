@@ -12,4 +12,4 @@ There are 3 speech recognition systems in our experiments
 Our experiments system: ubuntu16.04
 Tensorflow 1.8, cuda,python3.6
 
-In addition, in the uploaded .py file, FG.file contains the source code of the FG approach
+In addition, in the uploaded .py file, FG.py file contains the source code of the FG approach
