@@ -16,12 +16,7 @@ ALPHA = 1   #alpha's value will be changed
 
 
 ###########################################################################
-# This section of code is credited to:
-## Copyright (C) 2017, Nicholas Carlini <nicholas@carlini.com>.
 
-# Okay, so this is ugly. We don't want DeepSpeech to crash.
-# So we're just going to monkeypatch TF and make some things a no-op.
-# Sue me.
 tf.load_op_library = lambda x: x
 generation_tmp = os.path.exists
 os.path.exists = lambda x: True
@@ -44,16 +39,10 @@ tf.app.flags = HereBeDragons()
 import DeepSpeech
 os.path.exists = generation_tmp
 
-# More monkey-patching, to stop the training coordinator setup
-DeepSpeech.TrainingCoordinator.__init__ = lambda x: None
-DeepSpeech.TrainingCoordinator.start = lambda x: None
 
 from util.text import ctc_label_dense_to_sparse
 from tf_logits import compute_mfcc, get_logits
 
-# These are the tokens that we're allowed to use.
-# The - token is special and corresponds to the epsilon
-# value in CTC decoding, and can not occur in the phrase.
 toks = " abcdefghijklmnopqrstuvwxyz'-"
 
 ###########################################################################
@@ -112,7 +101,7 @@ def mutate_pop(pop, mutation_p, noise_stdev):
     new_pop = pop + noise * mask
     return new_pop
 
-class Genetic():
+class Firefly():
     
    
 
@@ -333,9 +322,9 @@ log_file = inp_wav_file[:-4] + '_log.txt'
 print('target phrase:', target)
 print('source file:', inp_wav_file)
 
-g = Genetic(inp_wav_file, out_wav_file, target)
+f =Firefly(inp_wav_file, out_wav_file, target)
 with open(log_file, 'w') as log:
-    success = g.run(log=log)
+    success = f.run(log=log)
 
 if success:
 	print('Success! Wav file stored as', out_wav_file)
