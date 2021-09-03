@@ -5,7 +5,6 @@ import os
 import sys
 import math
 import copy
-sys.path.append("DeepSpeech")
 import random
 from scipy.signal import butter, lfilter
 
@@ -191,7 +190,7 @@ class Firefly():
                         temp[i] += beta * (temp[j] - temp[i]) + 0.4 * np.random.uniform(-1,1,temp[i].shape[0])
                     else:
                         continue
-        print("当前迭代次数： ", self.count, " 本轮迭代种群是否变异: ", mutataFlag, " 本轮次的阿尔法值: ", self.params[2])
+        print("Iteration now： ", self.count, " whether mutate: ", mutataFlag, " num of alpha: ", self.params[2])
         return temp
 
     def alpha_new(self, _nowItr):
