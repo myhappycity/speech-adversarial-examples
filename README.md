@@ -9,5 +9,7 @@ There are 3 speech recognition systems in our experiments
 - Kaldi (https://github.com/kaldi-asr/kaldi)
 - Lingvo (https://github.com/tensorflow/lingvo)
 
-Our experiments: ubuntu16.04
+Our experiments system: ubuntu16.04
 Tensorflow 1.8, cuda,python3.6
+
+In addition, in the uploaded .py file, FG.file contains the source code of the FG approach
